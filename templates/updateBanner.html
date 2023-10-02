@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+
+        {% include 'header.html' %}
+
+
+        {% include 'sidebar.html' %}
+        <div class="content-wrapper" style="min-height: 593px;">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Update Banners <small></small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'showBanner' %}"
+                            class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a></li>
+                </ol>
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div id="container_message">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <form
+                                    action="{% url 'saveUpdatebanner' %}"
+                                    id="form" method="post" enctype="multipart/form-data"
+                                    class="has-validation-callback">
+                                    {% csrf_token %}
+
+                                    <input type="hidden" name="id" value="{{data.id}}">
+                                    <div class="form-group">
+                                        <label for="title">Title : <span class="text-danger">*</span></label>
+                                        <input type="text" id="title" name="title" class="form-control" value="{{data.title}}"
+                                            placeholder="" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description: <span class="text-danger">*</span></label>
+                                        <input type="text" id="description" name="description" class="form-control"
+                                            value="{{data.description}}" placeholder="" required="">
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+
+
+                                            <div class="form-group">
+                                                <label for="banner_image">Banners Image: <span class="text-danger">*</span> </label>
+                                                <p>We recommoded 680x300 for batter resolution</p>
+                                                <input type="file" id="banner_image" value="{{data.banner_image}}" name="banner_image">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <label class="">Image</label>
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <input type="submit" class="btn btn-primary" name="addcatg" value="Add">
+                                    <a href="/showBanner" class="btn btn-danger">Cancel</a>
+                                </form>
+
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
+        {% include 'footer.html' %}
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+
+
+    {% include 'footer_script.html' %}
+
+</body>
+
+</html>

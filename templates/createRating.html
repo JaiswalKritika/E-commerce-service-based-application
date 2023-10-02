@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% include 'head.html' %}
+<script
+    src="https://raw.githubusercontent.com/javiertoledo/bootstrap-rating-input/master/src/bootstrap-rating-input.js"></script>
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+
+        {% include 'header.html' %}
+
+
+        {% include 'sidebar.html' %}
+        <div class="content-wrapper" style="min-height: 593px;">
+            <section class="content-header">
+
+                <h1>
+                    ADD SERVICE<small></small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'showRating' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i>
+                            List</a></li>
+                </ol>
+
+            </section>
+            <section class="content">
+                <div id="container_message">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+
+
+                            <div class="box-body">
+                                <form action="{% url 'saveRating' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="box-body">
+                                        <input type="hidden" name="id" value="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="User_id">User_id: <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-control" id="User_id" name="User_id">
+                                                        {% for x in data.customer_data %}
+                                                        <option value="{{ x.id }}">{{ x.name }}</option>
+                                                        {% endfor %}
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="Partner_id">Partner_id : <span
+                                                            class="text-danger">*</span></label>
+                                                    <select class="form-control" id="Partner_id" name="Partner_id">
+                                                        {% for y in data.partner_data %}
+                                                        <option value="{{ y.id }}">{{ y.name }}</option>
+                                                        {% endfor %}
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="reply">Ratings : <span class="text-danger">*</span></label>
+                                                <input class="my_class rating form-control" data-clearable="" data-max="5"
+                                                    data-min="1" id="reply" name="reply" value=""
+                                                    type="number"
+                                                    onchange="console.log($('input.my_class').rating().val())" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="reply">Review and Reply : <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" name="reply" class="form-control" value=""
+                                                    placeholder="" id="reply">
+                                                <small>Note : This is approx
+
+                                            </div>
+
+                                        </div>
+                                        <hr>
+                                        <input type="submit" class="btn btn-primary" name="" value="Add">
+                                        <a href="/homePage" class="btn btn-danger">Cancel</a>
+
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        {% include 'footer.html' %}
+        <div class="control-sidebar-bg"></div>
+    </div>
+    {% include 'footer_script.html' %}
+
+</body>
+
+</html>

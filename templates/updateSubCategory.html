@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+
+{% include 'head.html' %}
+
+
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+  <div class="pace  pace-inactive">
+    <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+      data-progress="99">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+  <div class="wrapper" style="height: auto; min-height: 100%;">
+
+    {% include 'header.html' %}
+
+
+    {% include 'sidebar.html' %}
+    <div class="content-wrapper" style="min-height: 593px;">
+      <section class="content-header">
+        <h1>
+          SubCategories <small></small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="{% url 'showSubCategory' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a>
+          </li>
+        </ol>
+      </section>
+      <section class="content">
+        <div id="container_message">
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+
+
+              <div class="box-body">
+                <form action="{% url 'Sub_update' %}" id="form" method="post" class="has-validation-callback">
+                  {% csrf_token %}
+
+                  <input type="hidden" name="id" value="{{ Sub_cat.id }}">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="category_Id">Categories_Id : <span class="text-danger">*</span></label>
+                        <select class="form-control" value="{{ Sub_cat.category_Id }}" id="category_Id"
+                          name="category_Id">
+                          {% for x in category_data %}
+                          <option value="{{ x.id }}">{{ x.title }}</option>
+                          {% endfor %}
+
+
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="title">Title : <span class="text-danger">*</span></label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ Sub_cat.title }}"
+                          placeholder="Title" required="">
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description">Description :</label>
+    
+                    <textarea name="description" id="description" class="textarea"
+                      placeholder="Description"
+                      style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" >{{ Sub_cat.description }}</textarea>
+                  </div> 
+                  <div class="row">
+                    <div class="col-sm-5">
+
+
+                      <div class="form-group">
+                        <label>Category Image: <span class="text-danger">*</span> </label>
+                        <p>We recommoded 680x300 for batter resolution</p>
+                        <input value="{{ Sub_cat.Subcategory_image }}" type="file" name="image">
+                      </div>
+                    </div>
+                    <div class="col-sm-7">
+                      <label class="">Image</label>
+
+                    </div>
+                  </div>
+                  <hr>
+                  <input type="submit" class="btn btn-primary" name="submit" value="Add">
+                  <a href="/showSubCategory" class="btn btn-danger">Cancel</a>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+    {% include 'footer.html' %}
+    <div class="control-sidebar-bg"></div>
+  </div>
+  {% include 'footer_script.html' %}
+
+
+</body>
+
+</html>

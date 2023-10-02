@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% include 'head.html' %}
+<script
+    src="https://raw.githubusercontent.com/javiertoledo/bootstrap-rating-input/master/src/bootstrap-rating-input.js"></script>
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+
+        {% include 'header.html' %}
+
+
+        {% include 'sidebar.html' %}
+        <div class="content-wrapper" style="min-height: 593px;">
+            <section class="content-header">
+
+                <h1>
+                    Manage Rating<small></small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'createRating' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i>
+                            Show</a></li>
+                </ol>
+
+            </section>
+            <section class="content">
+                <div id="container_message">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+        
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="dataTables_wrapper form-inline dt-bootstrap no-footer"
+                                     id="example1_wrapper">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="dataTables_length" id="example1_length"><label>Show <select
+                                                    aria-controls="example1" class="form-control input-sm"
+                                                    name="example1_length">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select> entries</label></div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="dataTables_filter" id="example1_filter"><label>Search:<input
+                                                    aria-controls="example1" class="form-control input-sm" placeholder=""
+                                                    type="search"></label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table aria-describedby="example1_info"
+                                                   class="table table-bordered table-striped dataTable no-footer"
+                                                   id="example1" role="grid">
+                                                <tr role="row">
+                                                    <th aria-controls="example1" aria-label="Title: activate to sort column descending" aria-sort="ascending"
+                                                        class="sorting_asc" colspan="1" rowspan="1"
+                                                        style="width: 179.2px;"
+                                                        tabindex="0">User_id
+                                                    </th>
+                                                    <th aria-controls="example1" aria-label="Category: activate to sort column ascending" class="sorting"
+                                                        colspan="1" rowspan="1"
+                                                        style="width: 95.7px;"
+                                                        tabindex="0">Partner_id
+                                                    </th>
+                                                    <th aria-controls="example1" aria-label="Price: activate to sort column ascending" class="sorting"
+                                                        colspan="1" rowspan="1"
+                                                        style="width: 31.1875px;"
+                                                        tabindex="0">rating
+                                                    </th>
+                                                    <th aria-controls="example1" aria-label="Discount: activate to sort column ascending" class="sorting"
+                                                        colspan="1" rowspan="1"
+                                                        style="width: 54.2px;"
+                                                        tabindex="0">Reply
+                                                    </th>
+                                                    <th aria-controls="example1" aria-label="Time: activate to sort column ascending" class="sorting"
+                                                        colspan="1" rowspan="1"
+                                                        style="width: 30.9125px;"
+                                                        tabindex="0">created_date
+                                                    </th>
+                                                    <th aria-controls="example1" aria-label="Action: activate to sort column ascending" class="sorting"
+                                                        colspan="1" rowspan="1" style="width: 60px;"
+                                                        tabindex="0"
+                                                        width="60">action
+                                                    </th>
+                                                
+                                                    
+                                                </tr>
+                                                {% for x in data %}
+                                                <tr>
+                                                    <td CLASS="title sorting_1">{{ x.data1 }}</td>
+                                                    <td CLASS="title sorting_1">{{ x.data2}}</td>
+                                                    <td CLASS="title sorting_1">{{ x.rating }}</td>
+                                                    <td CLASS="title sorting_1">{{ x.reply }}</td>
+                                                    <td CLASS="title sorting_1">{{ x.created_date }}</td>
+                                                    
+                                                    <td>
+                                                        <a class="btn btn-danger" href="{% url 'deleteRating' id=x.id %}">delete</a>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+        
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div aria-live="polite" class="dataTables_info" id="example1_info"
+                                                 role="status">Showing 1 to 10 of 56 entries
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="example1_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button previous disabled"
+                                                        id="example1_previous"><a aria-controls="example1" data-dt-idx="0"
+                                                                                  href="#" tabindex="0">Previous</a></li>
+                                                    <li class="paginate_button active"><a aria-controls="example1"
+                                                                                          data-dt-idx="1"
+                                                                                          href="#" tabindex="0">1</a>
+                                                    </li>
+                                                    <li class="paginate_button "><a aria-controls="example1" data-dt-idx="2"
+                                                                                    href="#" tabindex="0">2</a></li>
+                                                    <li class="paginate_button "><a aria-controls="example1" data-dt-idx="3"
+                                                                                    href="#" tabindex="0">3</a></li>
+                                                    <li class="paginate_button "><a aria-controls="example1" data-dt-idx="4"
+                                                                                    href="#" tabindex="0">4</a></li>
+                                                    <li class="paginate_button "><a aria-controls="example1" data-dt-idx="5"
+                                                                                    href="#" tabindex="0">5</a></li>
+                                                    <li class="paginate_button "><a aria-controls="example1" data-dt-idx="6"
+                                                                                    href="#" tabindex="0">6</a></li>
+                                                    <li class="paginate_button next" id="example1_next"><a aria-controls="example1"
+                                                                                                           data-dt-idx="7"
+                                                                                                           href="#"
+                                                                                                           tabindex="0">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </section>
+        </div>
+        {% include 'footer.html' %}
+        <div class="control-sidebar-bg"></div>
+    </div>
+    {% include 'footer_script.html' %}
+
+</body>
+
+</html>

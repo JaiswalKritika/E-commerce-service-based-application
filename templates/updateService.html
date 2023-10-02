@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title> Create Agent</title>
+  <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/css/custom.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/css/skins/_all-skins.min.css">
+    <!-- Pace style -->
+    <link rel="stylesheet" href="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/plugins/pace/pace.min.css">
+  
+  
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/security.js"></script></head>
+  
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+    <div class="pace  pace-inactive">
+      <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+        data-progress="99">
+        <div class="pace-progress-inner"></div>
+      </div>
+      <div class="pace-activity"></div>
+    </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+  
+      {% include 'header.html' %}
+  
+  
+      {% include 'sidebar.html' %}
+      <div class="content-wrapper" style="min-height: 593px;">
+        <section class="content-header">
+
+  <h1>
+    ADD AGENT<small></small>
+  </h1>
+         <ol class="breadcrumb">
+    <li><a href="{% url 'showService' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a></li>
+  </ol>
+
+        </section>
+        <section class="content">
+            <div id="container_message">
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="box">
+    
+    
+                  <div class="box-body">
+
+        <form action="{% url 'updateService1' %}" method="post">
+            {% csrf_token %}
+            <div class="box-body">
+                <input type="hidden" name="id" value="{{ user.id }}">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="categories">Categories: <span class="text-danger">*</span></label>
+                      <select class="form-control" id="categories" name="categories">
+                        {% for x in data.category_data %}
+                        <option value="{{ x.id }}">{{ x.title }}</option>
+                        {% endfor %}
+
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="SubCategories">SubCategories : <span class="text-danger">*</span></label>
+                      <select class="form-control" id="SubCategories" name="SubCategories">
+                          {% for x in data.titles %}
+                          <option value="{{ x.id }}">{{ x.title }}</option>
+                          {% endfor %}
+
+
+                        </select>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title : <span class="text-danger">*</span></label>
+                    <input type="text" name="title" class="form-control" value="{{user.title}}" placeholder="title" required=""
+                        data-validation="required" id="title">
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price : <span class="text-danger">*</span></label>
+                    <input type="text" name="price" class="form-control" value="{{user.price}}" placeholder="Price"
+                        data-validation="required number" id="price">
+                </div>
+                <div class="form-group">
+                    <label for="discount">Discount : </label>
+                    <input type="text" name="discount" class="form-control" value="{{user.discount}}" placeholder="discount"
+                        id="discount">
+                </div>
+                <div class="form-group">
+                    <label for="time">Time : <span class="text-danger">*</span></label>
+                    <input type="time" name="time" class="form-control" value="{{user.time}}" placeholder="Time" id="time">
+                    <small>Note : This is approx time taken to be finish this service</small>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                       
+                        <div class="form-group">
+                            <label for="image">Service Image: <span class="text-danger">*</span> </label>
+                            <p>We commonded to choose 200X200 px image</p>
+                            <input type="file" name="image" id="image" value="{{user.image}}">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <input type="submit" class="btn btn-primary" name="" value="Update" >
+                <a href="/showService"
+                    class="btn btn-danger">Cancel</a>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
+</div>
+
+</div>
+</section>
+</div>
+{% include 'footer.html' %}
+<div class="control-sidebar-bg"></div>
+</div>
+
+
+{% include 'footer_script.html' %}
+
+    </body>
+
+</html>

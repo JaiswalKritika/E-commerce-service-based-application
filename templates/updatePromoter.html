@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'head.html' %}
+  
+
+    <body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+        <div class="pace  pace-inactive">
+          <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+          </div>
+          <div class="pace-activity"></div>
+        </div>
+        <div class="wrapper" style="height: auto; min-height: 100%;">
+      
+          {% include 'header.html' %}
+      
+      
+          {% include 'sidebar.html' %}
+          <div class="content-wrapper" style="min-height: 593px;">
+            <section class="content-header">
+
+
+      <h1>
+        Update Promoter<small></small>
+      </h1>
+             <ol class="breadcrumb">
+        <li><a href="/showPromoter" class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a></li>
+      </ol>
+            </section>
+            <section class="content">
+                <div id="container_message">
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="box">
+        
+        
+                      <div class="box-body">
+
+
+<form action="{% url 'save_updatePromoter' %}" class="has-validation-callback" enctype="multipart/form-data" id="form" method="post">
+    {% csrf_token %}
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">Login Details</h3>
+        </div>
+        <div class="box-body">
+            <input name="id" type="hidden" value="{{ promoter.id }}">
+        
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <label for="email"> User Email <strong style="color: red;">*</strong></label>
+                    <input class="form-control"  data-validation-url="" id="email" name="email"
+                           placeholder="User Email" required="" type="email"
+                           value="{{ promoter.email }}">
+                    <div id="email_message"></div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <label for="password"> Password <strong style="color: red;">*</strong></label>
+                    <input class="form-control" data-validation="required" id="password" name="password" placeholder="password *"
+                           required="" type="password" value="{{ promoter.password }}">
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="box-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <label for="name"> Name <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="name" name="name" placeholder="name" required="" type="text" value="{{ promoter.name }}">
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <label for="contact"> Contact NO. <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="contact" name="contact" placeholder="contact " required="" type="text" value="{{ promoter.contact }}">
+                </div>
+            </div>
+        </div>
+    <div class="box-body">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="address"> Address <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="address" name="address" placeholder="address"  type="text" value="{{ promoter.address }}">
+
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="city"> City <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="city" name="city" placeholder="city *"  type="text" value="{{ promoter.city }}">
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="country"> Contact NO. <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="country" name="country" placeholder="country"  type="text" value="{{ promoter.country }}">
+                </div>
+            </div>
+        </div>
+     <div class="box-body">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="postalcode"> Postal Code <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="postalcode" name="postalcode" placeholder="postalcode"  type="text" value="{{ promoter.postalcode }}">
+
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="longitude"> Longitude <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="longitude" name="longitude" placeholder="longitude"  type="text" value="{{ promoter.longitude }}">
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="latitude"> Latitude <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="latitude" name="latitude" placeholder="country"  type="text" value="{{ promoter.country }}">
+                </div>
+            </div>
+        </div>
+    <div class="box">
+        <!-- /.box-header -->
+        <div class="box-body">
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="profilepic">Profile Image: <span class="text-danger">*</span> </label>
+                        <p>We recommonded to user 320x320 px Image Allow jpg,png</p>
+                        <input name="profilepic" type="file" value="{{promoter.profilepic}}" id="profilepic">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="idproof">Pros Id Proof: <span class="text-danger">*</span> </label>
+                        <p>We recommonded to user 680x320 px Image Allow jpg,png</p>
+                        <input name="idproof" type="file" value="{{promoter.idproof}}" id="idproof">
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <input class="btn btn-primary" name="addcatg" type="submit" value="Add">
+            <a class="btn btn-danger" href="/homePage">Cancel</a>
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</form>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+</div>
+{% include 'footer.html' %}
+<div class="control-sidebar-bg"></div>
+</div>
+
+{% include 'footer_script.html' %}
+
+
+
+</body>
+</html>

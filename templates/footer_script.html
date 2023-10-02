@@ -1,0 +1,74 @@
+<script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/jquery/dist/jquery.min.js"></script>
+            <!-- Bootstrap 3.3.7 -->
+
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+            <!-- PACE -->
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/PACE/pace.min.js"></script>
+            <!-- DataTables -->
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+            <!-- SlimScroll -->
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+            <!-- FastClick -->
+            <script
+                src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/bower_components/fastclick/lib/fastclick.js"></script>
+
+            <script
+                src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+            <!-- AdminLTE App -->
+            <script src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/js/adminlte.min.js"></script>
+            <script src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/js/common.js"></script>
+            <!-- page script -->
+            <script type="text/javascript">
+                // To make Pace works on Ajax calls
+                $(document).ajaxStart(function () {
+                    Pace.restart()
+                });
+            </script>
+            <script>
+                $(function () {
+                    $.validate({
+                        lang: 'en',
+                        modules: 'security'
+                    });
+                });
+            </script>
+<script type="text/javascript">
+    // To make Pace works on Ajax calls
+    $(document).ajaxStart(function () {
+      Pace.restart()
+    });
+  </script>
+  <script>
+    $(function () {
+      
+      var mSortingString = [];
+var disableSortingColumn = 3; 
+mSortingString.push({ "bSortable": false, "aTargets": [disableSortingColumn] });
+      $("body").on("change",".tgl_checkbox",function(){
+          var table = $(this).data("table");
+          var status = $(this).data("status");
+          var id = $(this).data("id");
+          var id_field = $(this).data("idfield");
+          var bin=0;
+                                       if($(this).is(':checked')){
+                                          bin = 1;
+                                       }
+          $.ajax({
+            method: "POST",
+            url: "http://dsinfoway.com/codecanyon/servicebooking/backend/index.php/commonjson/change_status",
+            data: { table: table, status: status, id : id, id_field : id_field, on_off : bin }
+          })
+            .done(function( msg ) {
+            //  alert(msg);
+            }); 
+      });
+    });
+  </script>
+

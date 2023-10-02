@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+{% include 'head.html' %}
+
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+  <div class="pace  pace-inactive">
+    <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+      data-progress="99">
+      <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+  <div class="wrapper" style="height: auto; min-height: 100%;">
+
+    {% include 'header.html' %}
+
+
+    {% include 'sidebar.html' %}
+    <div class="content-wrapper" style="min-height: 593px;">
+      <section class="content-header">
+
+        <h1>
+          ADD SERVICE<small></small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="{% url 'showService' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a></li>
+        </ol>
+
+      </section>
+      <section class="content">
+        <div id="container_message">
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+
+
+              <div class="box-body">
+                <form action="{% url 'saveService' %}" method="post">
+                  {% csrf_token %}
+                  <div class="box-body">
+                    <input type="hidden" name="id" value="">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="categories">Categories: <span class="text-danger">*</span></label>
+                          <select class="form-control" id="categories" name="categories">
+                            {% for x in data.category_data %}
+                            <option value="{{ x.id }}">{{ x.title }}</option>
+                            {% endfor %}
+
+
+                          </select> 
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="SubCategories">SubCategories : <span class="text-danger">*</span></label>
+                          <select class="form-control" id="SubCategories" name="SubCategories">
+                            {% for y in data.titles %}
+                            <option value="{{ y.id }}">{{ y.title }}</option>
+                            {% endfor %}
+
+
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="offers">OFFERS<span class="text-danger">*</span></label>
+                          <select class="form-control" id="offers" name="offers">
+                            <option value="offer"><a href="/">Percentage</a></option>
+                            <option value="offer"><a href="/">Flat</a></option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="value">VALUES <span class="text-danger">*</span></label><br>
+                          <input type="text" name="value" class="form-control" value="" placeholder="value" required=""
+                        data-validation="required" id="value">
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="title">Title : <span class="text-danger">*</span></label>
+                      <input type="text" name="title" class="form-control" value="" placeholder="title" required=""
+                        data-validation="required" id="title">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="price">Price : <span class="text-danger">*</span></label>
+                      <input type="text" name="price" class="form-control" value="" placeholder="Price"
+                        data-validation="required number" id="price">
+                    </div>
+                    <div class="form-group">
+                      <label for="discount">Discount : </label>
+                      <input type="text" name="discount" class="form-control" value="" placeholder="discount"
+                        id="discount">
+                    </div>
+                    <div class="form-group">
+                      <label for="time">Time : <span class="text-danger">*</span></label>
+                      <input type="text" name="time" class="form-control" value="Time" placeholder="Time" id="time">
+                      <small>Note : This is approx time taken to be finish this service</small>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <!--<div class="col-sm-5">
+                        <div class="bus-product thumbnail avatar-view" data-height="250" data-width="250" data-base_path="./uploads/services">   
+                            
+                            <img src="http://dsinfoway.com/codecanyon/servicebooking/backend/theme/dist/img/avatar.png" class="img-responsive" />                        
+                            <input type="hidden" name="service_icon" value="" />
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <label class="">Image</label>
+                        <p>Image Size in Maximum Size 250 X 250px</p>
+                    </div>-->
+                        <div class="form-group">
+                          <label for="image">Service Image: <span class="text-danger">*</span> </label>
+                          <p>We commonded to choose 200X200 px image</p>
+                          <input type="file" name="image" id="image">
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr>
+                    <input type="submit" class="btn btn-primary" name="" value="Add">
+                    <a href="/homePage" class="btn btn-danger">Cancel</a>
+
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+    {% include 'footer.html' %}
+    <div class="control-sidebar-bg"></div>
+  </div>
+  {% include 'footer_script.html' %}
+
+</body>
+
+</html>

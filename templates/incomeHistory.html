@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%"></body>
+<div class="pace  pace-inactive">
+    <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+        data-progress="99">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+</div>
+<div class="wrapper" style="height: auto; min-height: 100%;">
+
+    {% include 'header.html' %}
+
+
+    {% include 'sidebar.html' %}
+    <div class="content-wrapper" style="min-height: 593px;">
+        <section class="content-header">
+            <h1>
+                INCOME HISTORY <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'createBanner' %}" class="btn btn-sm btn-default"><i class="fa fa-plus"></i> Add
+                        New</a>
+                </li>
+            </ol>
+        </section>
+        <section class="content">
+            <div id="container_message">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1"
+                                            class="table table-bordered table-striped dataTable no-footer" role="grid"
+                                            aria-describedby="example1_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" style="width: 167.917px;"
+                                                        aria-sort="ascending"
+                                                        aria-label="Title: activate to sort column descending">Agent_id
+                                                    </th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" style="width: 38.1167px;"
+                                                        aria-label="Type: activate to sort column ascending">Agent amount</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" style="width: 552.933px;"
+                                                        aria-label="Value: activate to sort column ascending">Admin amount</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" style="width: 54.0333px;"
+                                                        aria-label="Images: activate to sort column ascending">created_date
+                                                    </th>
+                                                
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1" style="width: 60px;"
+                                                        aria-label="Action: activate to sort column ascending"
+                                                        width="60">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for x in data %}
+                                                <tr id="row-36" role="row" class="odd">
+                                                 
+                                                  <td class="title sorting_1">{{ x.agent_amount}}</td>
+
+                                                  
+                                                
+                                    <td>
+                                                        <div class="btn-group">
+
+                                                            <a href="{% url '' id=x.id %}"
+                                                                onclick="return confirm('Are you sure to delete..?')"
+                                                                class="btn btn-danger"><i class="fa fa-remove"></i></a>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+    </div>
+    {% include 'footer.html' %}
+    <div class="control-sidebar-bg"></div>
+</div>
+{% include 'footer_script.html' %}
+
+</body>
+
+</html>

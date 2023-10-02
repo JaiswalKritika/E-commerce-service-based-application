@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+
+
+<body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+    <div class="pace  pace-inactive">
+        <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+        </div>
+        <div class="pace-activity"></div>
+    </div>
+    <div class="wrapper" style="height: auto; min-height: 100%;">
+
+        {% include 'header.html' %}
+
+
+        {% include 'sidebar.html' %}
+        <div class="content-wrapper" style="min-height: 593px;">
+            <section class="content-header">
+                <h1>
+                    ADD PACKAGE
+
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'showCreatePackageInfo' %}" class="btn btn-sm btn-default"><i
+                                class="fa fa-list"></i>
+                            List</a></li>
+                </ol>
+
+            </section>
+
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="box box-primary">
+                            <!-- form start -->
+                            <form action="{% url 'updatedPackageForm' %}" method="post" enctype="multipart/form-data"
+                                class="has-validation-callback">
+                                {% csrf_token %}
+                                <div class="box-body">
+                                    <input type="hidden" name="id" value="{{ user.id }}">
+                                    <div class="form-group">
+                                        <label for="Title">Title : <span class="text-danger">*</span></label>
+                                        <input type="text" id="Title" name="Title" value="{{ user.Title }}" class="form-control"
+                                            placeholder="Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Description">Description : <span
+                                                class="text-danger">*</span></label>
+                                        <textarea id="Description" class="form-control" name="Description" value="{{ user.Description }}"></textarea>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="StartDate"> Start Date and time:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <input id="StartDate" type="datetime-local"
+                                                class="form-control pull-right" name="StartDate"
+                                                value="{{ user.StartDate }}" id="reservationtime">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="EndDate"> End Date and time :</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <input id="EndDate" type="datetime-local"
+                                                class="form-control pull-right" name="EndDate"
+                                                value="{{ user.EndDate }}" id="reservationtime">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="PackageName">Package Name <span class="text-danger">*</span></label>
+                                        <input id="PackageName" type="text" name="PackageName" class="form-control"
+                                            value="{{ user.PackageName }}" placeholder="CODE15">
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="PackageCost">Package Cost</label>
+                                        <div class="input-group col-md-6">
+                                            <input type="number" id="PackageCost" class="form-control"
+                                                name="PackageCost" value="{{ user.PackageCost }}" min="1" max="100">
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NumberOfPartner">No. Of Partner <span
+                                                class="text-danger">*</span></label>
+                                        <input id="NumberOfPartner" type="text" name="NumberOfPartner" class="form-control"
+                                            value="{{ user.NumberOfPartner }}" placeholder="CODE15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ReferalCode">Referal Code<span class="text-danger">*</span></label>
+                                        <input id="ReferalCode" type="text" name="ReferalCode" class="form-control"
+                                            value="{{ user.ReferalCode }}" placeholder="CODE15">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="package_image">Package Image: <span class="text-danger">*</span> </label>
+                                        <p>We recommoded 680x300 for batter resolution</p>
+                                        <input type="file" id="package_image" name="package_image">
+                                    </div>
+
+
+                                </div><!-- /.box-body -->
+
+                                <div class="box-footer">
+                                    <input type="submit" class="btn btn-primary" name="add_offer" value="Add">
+                                    <a href="/homePage" class="btn btn-danger">Cancel</a>
+                                </div>
+                            </form>
+                        </div><!-- /.box -->
+                    </div>
+                </div>
+                <!-- Main row -->
+            </section>
+        </div>
+        {% include 'footer.html' %}
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    {% include 'footer_script.html' %}
+
+</body>
+
+</html>

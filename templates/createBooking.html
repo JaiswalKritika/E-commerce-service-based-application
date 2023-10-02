@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+{% include 'head.html' %}
+  
+
+    <body class="skin-blue sidebar-mini  pace-done" style="height: auto; min-height: 100%">
+        <div class="pace  pace-inactive">
+          <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%"
+            data-progress="99">
+            <div class="pace-progress-inner"></div>
+          </div>
+          <div class="pace-activity"></div>
+        </div>
+        <div class="wrapper" style="height: auto; min-height: 100%;">
+      
+          {% include 'header.html' %}
+      
+      
+          {% include 'sidebar.html' %}
+          <div class="content-wrapper" style="min-height: 593px;">
+            <section class="content-header">
+
+      <h1>
+        ADD BOOKING<small></small>
+      </h1>
+             <ol class="breadcrumb">
+        <li><a href="{% url 'showBooking' %}" class="btn btn-sm btn-default"><i class="fa fa-list"></i> List</a></li>
+      </ol>
+            </section>
+            <section class="content">
+                <div id="container_message">
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="box">
+        
+        
+                      <div class="box-body">
+
+
+
+<form action="{% url 'saveBooking' %}" class="has-validation-callback" enctype="multipart/form-data" id="form" method="post">
+    {% csrf_token %}
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">Login Details</h3>
+        </div>
+     <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="partner_id">partner_id: <span class="text-danger">*</span></label>
+                <select class="form-control" id="partner_id" name="partner_id">
+                  {% for x in data.partner_id %}
+                  <option value="{{ x.id }}">{{ x.name}}</option>
+                  {% endfor %}
+
+
+                </select> 
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="customer_id">customer_id : <span class="text-danger">*</span></label>
+                <select class="form-control" id="customer_id" name="customer_id">
+                  {% for y in data.titles %}
+                  <option value="{{ y.id }}">{{ y.name }}</option>
+                  {% endfor %}
+
+
+                </select>
+              </div>
+            </div>
+
+        </div>
+    
+     <div class="box-body">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="cost"> Approx cost <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="cost" name="cost" placeholder="cost"  type="text" value="">
+
+                </div>
+            
+                 <div class="col-xs-4 col-sm-4 col-md-4">
+                    <label for="status"> Status <strong style="color: red;">*</strong></label>
+                    <input class="form-control" id="status" name="status" placeholder="status"  type="text" value="">
+                </div>
+            </div>
+        </div>
+            <hr>
+            <input class="btn btn-primary" name="addbooking" type="submit" value="Add">
+            <a class="btn btn-danger" href="/homePage">Cancel</a>
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</form>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+</div>
+{% include 'footer.html' %}
+<div class="control-sidebar-bg"></div>
+</div>
+
+
+
+{% include 'footer_script.html' %}
+
+
+</body>
+</html>
